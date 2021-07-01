@@ -9,6 +9,23 @@ html, body {
     font-family: 'Lato', sans-serif;
 }
 
+h2 {
+    font-size: 50px;
+    margin: 0;
+}
+
+h3 {
+    font-size: 14px;
+    color: #696969;
+    font-weight: 100;
+    font-style: italic;
+}
+
+p {
+    font-size: 18px;
+    color: #666;
+}
+
 .top-nav {
     display: block;
 }
@@ -145,3 +162,22 @@ input::placeholder {
     color: #ff0000;
     display: block;
 }
+
+/* BLOG */
+
+.dark {
+    background-color: #000000;
+    box-shadow: 0px 0px 10px #000000;
+}
+
+.container {
+    margin: 0 auto;
+    width: 80%;
+    padding: 100px 0px;
+}
+
+.container-item {
+    border-bottom: 1px solid #dcdcdc;
+    padding: 40px 0px;
+}
+
