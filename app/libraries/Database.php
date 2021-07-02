@@ -23,7 +23,7 @@
             }
         }
 
-        //Allows us to write queries
+        //Permite escrever queries
         public function query($sql) {
             $this->statement = $this->dbHandler->prepare($sql);
         }
@@ -46,24 +46,24 @@
             $this->statement->bindValue($parameter, $value, $type);
         }
 
-        //Execute the prepared statement
+        //Executar o prepared statement
         public function execute() {
             return $this->statement->execute();
         }
 
-        //Return an array
+        //Retorna um array
         public function resultSet() {
             $this->execute();
             return $this->statement->fetchAll(PDO::FETCH_OBJ);
         }
 
-        //Return a specific row as an object
+        //Retorna um row especifico como um objeto
         public function single() {
             $this->execute();
             return $this->statement->fetch(PDO::FETCH_OBJ);
         }
 
-        //Get's the row count
+        //Pega o row count
         public function rowCount() {
             return $this->statement->rowCount();
         }
