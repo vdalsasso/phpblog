@@ -38,18 +38,18 @@ class Posts extends Controller {
             ];
 
             if(empty($data['title'])) {
-                $data['titleError'] = 'The title of a post cannot be empty';
+                $data['titleError'] = 'O título do post não pode ficar vazio';
             }
 
             if(empty($data['body'])) {
-                $data['bodyError'] = 'The body of a post cannot be empty';
+                $data['bodyError'] = 'O corpo do post nao pode ficar vazio';
             }
 
             if (empty($data['titleError']) && empty($data['bodyError'])) {
                 if ($this->postModel->addPost($data)) {
                     header("Location: " . URLROOT . "/posts");
                 } else {
-                    die("Something went wrong, please try again!");
+                    die("Algo deu errado, tente novamente!");
                 }
             } else {
                 $this->view('posts/create', $data);
@@ -61,6 +61,7 @@ class Posts extends Controller {
 
     public function update($id) {
 
+        
         $post = $this->postModel->findPostById($id);
 
         if(!isLoggedIn()) {
@@ -77,7 +78,12 @@ class Posts extends Controller {
             'bodyError' => ''
         ];
 
+
+
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $this->view('posts/update', $data);
+
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
@@ -91,31 +97,33 @@ class Posts extends Controller {
             ];
 
             if(empty($data['title'])) {
-                $data['titleError'] = 'The title of a post cannot be empty';
+                $data['titleError'] = 'O título não pode ficar vazio.';
             }
 
             if(empty($data['body'])) {
-                $data['bodyError'] = 'The body of a post cannot be empty';
+                $data['bodyError'] = 'A descrição não pode ficar vazia.';
             }
 
             if($data['title'] == $this->postModel->findPostById($id)->title) {
-                $data['titleError'] == 'At least change the title!';
+                $data['titleError'] == 'Pelo menos mude o título!';
             }
 
             if($data['body'] == $this->postModel->findPostById($id)->body) {
-                $data['bodyError'] == 'At least change the body!';
+                $data['bodyError'] == 'Pelo menos mude a descrição!';
             }
+
+            die("Algo deu errado, tente novamente!");
 
             if (empty($data['titleError']) && empty($data['bodyError'])) {
                 if ($this->postModel->updatePost($data)) {
                     header("Location: " . URLROOT . "/posts");
                 } else {
-                    die("Something went wrong, please try again!");
+                    die("Algo deu errado, tente novamente!");
                 }
             } else {
                 $this->view('posts/update', $data);
             }
-        }
+        } 
 
         $this->view('posts/update', $data);
     }
@@ -144,7 +152,7 @@ class Posts extends Controller {
             if($this->postModel->deletePost($id)) {
                     header("Location: " . URLROOT . "/posts");
             } else {
-               die('Something went wrong!');
+               die('Algo deu errado!');
             }
         }
     }

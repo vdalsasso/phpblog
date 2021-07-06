@@ -10,7 +10,7 @@
 
 <div class="container-login">
     <div class="wrapper-login">
-        <h2>Sign in</h2>
+        <h2>LOG IN</h2>
 
         <form action="<?php echo URLROOT; ?>/users/login" method ="POST">
             <input type="text" placeholder="Username *" name="username">

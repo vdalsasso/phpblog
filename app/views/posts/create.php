@@ -15,7 +15,7 @@
         Criar um novo post
     </h1>
 
-    <form action="<?php echo URLROOT; ?>/posts/create" method="POST">
+    <form action="<?php echo URLROOT; ?>/posts/create">
         <div class="form-item">
             <input type="text" name="title" placeholder="Título...">
             <span class="invalidFeedback">

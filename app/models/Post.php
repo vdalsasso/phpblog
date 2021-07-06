@@ -7,7 +7,7 @@ class Post {
     }
 
     public function findAllPosts() {
-        $this->db->query('SELECT * FROM posts ORDER BY created_at ASC');
+        $this->db->query('SELECT * FROM posts ORDER BY created_at DESC');
 
         $results = $this->db->resultSet();
 
@@ -15,7 +15,7 @@ class Post {
     }
 
     public function addPost($data) {
-        $this->db->query('INSERT INTO posts (user_id, title, body) VALUES (:user_id, :title, :body)');
+        $this->db->query('INSERT INTO posts (user_id, title, body, created_at) VALUES (:user_id, :title, :body, now())');
 
         $this->db->bind(':user_id', $data['user_id']);
         $this->db->bind(':title', $data['title']);
@@ -39,13 +39,15 @@ class Post {
     }
 
     public function updatePost($data) {
-        $this->db->query('UPDATE posts SET title = :title, body = :body WHERE id = :id');
 
+        $this->db->query('UPDATE posts SET title = :title body = :body WHERE id = :id');
+         
         $this->db->bind(':id', $data['id']);
         $this->db->bind(':title', $data['title']);
         $this->db->bind(':body', $data['body']);
 
-        if($this->db->execute()) {
+
+        if ($this->db->execute()) {
             return true;
         } else {
             return false;

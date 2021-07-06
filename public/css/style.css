@@ -247,4 +247,5 @@ textarea {
     background-color: #ff0000;
     margin: 0px 20px;
     float: right;
+    cursor: pointer;
 }
